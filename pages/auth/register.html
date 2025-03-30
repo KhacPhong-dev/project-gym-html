@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form{
+            width: 30%;
+            height: 430px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid black;
+            border-radius: 5px;
+            box-shadow: 2px 4px 8px 4px rgba(0, 0, 0, 0.2);
+
+        }
+        input{
+            width: 90%;
+            height: 30px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 0 10px;
+
+        }
+        button{
+            width: 90%;
+            height: 30px;
+            margin: 10px 0;
+            border: 1px solid #2934d0;
+            border-radius: 5px;
+            padding: 0 10px;
+            background-color: #2934d0;
+            color: aliceblue;
+            cursor: pointer;
+
+        }
+        label{
+            width: 90%;
+            height: 1px;
+            margin: 10px 0;
+            padding: 0 10px;
+            display: flex;
+            align-items: center
+
+        }
+    </style>
+</head>
+<body>
+    <form action="" id="form">
+        <h1>Register</h1>
+        <label for="name">name</label>
+        <input type="name" id="name" placeholder="name">
+        <label for="email">email</label>
+        <input type="email" id="email" placeholder="Email">
+        <label for="password">password</label>
+        <input type="password" id="password" placeholder="Password">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" placeholder="Confirm Password">
+        <button type="submit">Register</button>
+        <h3>Bạn đã có tài khoản <a href="login.html"> Đăng nhập ngay</a></h3>
+    </form>
+    <script>
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+            let name = document.getElementById("name");
+            let form = document.getElementById("form");
+            let email = document.getElementById("email");
+            let password = document.getElementById("password");
+            let confirmPassword = document.getElementById("confirmPassword");
+            form.addEventListener("submit", function (e) {
+                e.preventDefault();
+                if (email.value == "" || password.value == "" || confirmPassword.value == ""||name.value == "") {
+                    alert("Vui lòng nhập đầy đủ thông tin");
+                }else if (password.value.length < 8) {
+                    alert("password phải có ít nhất 8 ký tự");
+                }else if (email.value.indexOf("@") == -1&&email.value.indexOf(".") == -1) {
+                    alert("email không hợp lệ");
+                }
+                else if (password.value != confirmPassword.value) {
+                    alert("Mật khẩu không khớp");
+
+                }
+                else {
+                    let user = {
+                        name: name.value,
+                        email: email.value,
+                        password: password.value
+                    }
+                    function checkEmail(email) {
+                        for (let i = 0; i < users.length; i++) {
+                            if (users[i].email == email) {
+                                return false;
+                            }
+                        }
+                        return true;
+                    }
+                    if (checkEmail(email.value)) {
+                        users.push(user);
+                        localStorage.setItem("users", JSON.stringify(users));
+                        alert("Đăng ký thành công");
+                        window.location.href = "login.html";
+                        
+
+                    }
+                    else {
+                        alert("Email đã tồn tại");
+                    }
+                }
+
+            })
+    </script>
+</body>
+</html>
