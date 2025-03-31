@@ -145,14 +145,13 @@
                             return true;
                             
                         }
-                        else {
-                            alert("Email hoặc mật khẩu không đúng");
-                            return false;
-                        }
+                        
                     }
+                    alert("Email hoặc mật khẩu không đúng");
+                    return false;
                 }
                 if (checkEmail(email.value, password.value)) {
-                    window.location.href = "index.html"; 
+                    window.location.href = "../../index.html"; 
                 }
             }
         })

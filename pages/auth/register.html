@@ -138,6 +138,7 @@
                 e.preventDefault();
                 if (email.value == "" || password.value == "" || confirmPassword.value == ""||name.value == "") {
                     alert("Vui lòng nhập đầy đủ thông tin");
+                    
                 }else if (password.value.length < 8) {
                     alert("password phải có ít nhất 8 ký tự");
                 }else if (email.value.indexOf("@") == -1&&email.value.indexOf(".") == -1) {
@@ -145,6 +146,9 @@
                 }
                 else if (password.value != confirmPassword.value) {
                     alert("Mật khẩu không khớp");
+                    innerHTML = `
+                    <p class="red-text">Vui lòng nhập mật khẩu</p>
+                    `;
 
                 }
                 else {
@@ -165,7 +169,7 @@
                         users.push(user);
                         localStorage.setItem("users", JSON.stringify(users));
                         alert("Đăng ký thành công");
-                        window.location.href = "index.html";
+                        window.location.href = "../../index.html";
                         
 
                     }
