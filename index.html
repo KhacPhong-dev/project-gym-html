@@ -1,42 +1,84 @@
-<!--
-tạo trang chủ hiện 2 nút đăng nhập đăng kí-->
+<!-- để thanh đầu trang và home chứa nút đăng nhập đăng kí -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        /* để trong 1 khung hình vuông có đổ bóng */
-        .container{
-            width: 30%;
-            height: 300px;
-            margin: 0 auto;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        header {
+            background: #1F2937;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            border: 1px solid black;
-            border-radius: 5px;
-            box-shadow: 2px 4px 8px 4px rgba(0, 0, 0, 0.2);
-
+            justify-content: space-between;
+            padding: 15px 40px;
+            height: 55px;
         }
-        a{
-            color: #2934d0;
-            text-decoration: none;
+
+        .logo {
+            font-size: 24px;
             font-weight: bold;
-            font-size: 20px;
-            margin: 10px 0;
-            padding: 0 10px;
+            font-family: 'Brush Script MT', cursive;
+        }
+
+        .links {
+            margin-right: 20px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .links a {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+
+        .links a:hover {
+            opacity: 1;
+            font-weight: bold;
+            color: rgb(204, 52, 154);
+        }
+        a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
 
         }
-        /* tạo nút đăng nhập đăng kí */
-        </style>
-
+        .imgpage {
+            width: 100%;
+            height: auto;
+                
+        }
+    </style>
 </head>
+
 <body>
-    <div class="container"><h3><a href="./pages/auth/login.html">Đăng nhập</a> hoặc <a href="./pages/auth/register.html">đăng kí</a></h4></div>
-    
-    
+    <header>
+        <div class="logo">
+            <a href="index.html">GYM MANAGEMENT</a>
+        </div>
+        <div class="links">
+            <a href="index.html">Home</a>
+            <a href="./pages/auth/login.html">Login</a>
+            <a href="./pages/auth/register.html">Register</a>
+        </div>
+
+    </header>
+    <section>
+        <img class="imgpage" src="./img/Image [w-full].png" alt="">
+    </section>
+
 </body>
+
 </html>
