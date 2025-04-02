@@ -1,84 +1,83 @@
-<!-- để thanh đầu trang và home chứa nút đăng nhập đăng kí -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        header {
-            background: #1F2937;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 15px 40px;
-            height: 55px;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            font-family: 'Brush Script MT', cursive;
-        }
-
-        .links {
-            margin-right: 20px;
-            display: flex;
-            gap: 20px;
-        }
-
-        .links a {
-            text-decoration: none;
-            color: #ffffff;
-            font-size: 16px;
-            font-weight: 500;
-        }
-
-
-        .links a:hover {
-            opacity: 1;
-            font-weight: bold;
-            color: rgb(204, 52, 154);
-        }
-        a {
-            text-decoration: none;
-            color: white;
-            font-size: 16px;
-            font-weight: 500;
-
-        }
-        .imgpage {
-            width: 100%;
-            height: auto;
-                
-        }
-    </style>
+    <title>Gym Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./assets/css/main.css">
 </head>
 
-<body>
-    <header>
-        <div class="logo">
-            <a href="index.html">GYM MANAGEMENT</a>
-        </div>
-        <div class="links">
-            <a href="index.html">Home</a>
-            <a href="./pages/auth/login.html">Login</a>
-            <a href="./pages/auth/register.html">Register</a>
-        </div>
+<body class="bg-gray-100">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <h1 class="logo">GYM MANAGEMENT</h1>
+        <ul class="menu">
+            <li><a href="./index.html">Trang chủ</a></li>
+            <li><a href="./pages/booking/schedule.html">Lịch tập</a></li>
+            <li><a href="./pages/auth/login.html">Đăng nhập</a></li>
+        </ul>
+    </nav>
 
-    </header>
-    <section>
-        <img class="imgpage" src="./img/Image [w-full].png" alt="">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="overlay"></div>
+        <div class="hero-content">
+            <h2>Welcome to Our Gym</h2>
+            <p>Transform Your Body, Transform Your Life</p>
+            <a href="#" class="cta-button">Bắt đầu ngay</a>
+        </div>
     </section>
 
+    <!-- Popular Classes Section -->
+    <section class="popular-classes">
+        <h2>Các lớp học phổ biến</h2>
+        <div class="class-cards">
+            <div class="class-card">
+                <img src="./img/gym.png" alt="Gym">
+                <h3>Gym</h3>
+                <p>Tập luyện với các thiết bị hiện đại</p>
+                <a href="#" class="btn">Đặt lịch</a>
+            </div>
+            <div class="class-card">
+                <img src="./img/yoga.png" alt="Yoga">
+                <h3>Yoga</h3>
+                <p>Thư giãn và cân bằng tâm trí</p>
+                <a href="#" class="btn">Đặt lịch</a>
+            </div>
+            <div class="class-card">
+                <img src="./img/zumba.png" alt="Zumba">
+                <h3>Zumba</h3>
+                <p>Đốt cháy calories với những điệu nhảy sôi động</p>
+                <a href="#" class="btn">Đặt lịch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Về chúng tôi</h3>
+                <p>Gym Management - Nơi bạn bắt đầu hành trình fitness của mình với các trang thiết bị hiện đại và đội
+                    ngũ huấn luyện viên chuyên nghiệp.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Liên hệ</h3>
+                <p>Email: contact@gym.com</p>
+                <p>Phone: (123) 456-7890</p>
+                <p>Địa chỉ: 123 Đường ABC, Quận XYZ</p>
+            </div>
+            <div class="footer-section">
+                <h3>Theo dõi chúng tôi</h3>
+                <p><a href="#">Facebook</a> | <a href="#">Instagram</a> | <a href="#">Twitter</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 Gym Management. All rights reserved.
+        </div>
+    </footer>
 </body>
 
 </html>
