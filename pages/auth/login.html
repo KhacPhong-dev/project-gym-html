@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
+    <!-- <style>
         form {
             width: 30%;
             height: 400px;
@@ -109,7 +109,8 @@
 
             }
         }
-    </style>
+    </style> -->
+    <link rel="stylesheet" href="../../assets/css/login.css">
 </head>
 
 <body>
@@ -122,39 +123,9 @@
         <button id="btn">Login</button>
         <h3>Bạn chưa có tài khoản? <a href="register.html">Đăng ký ngay</a></h3>
     </form>
-    <script>
-        let users = JSON.parse(localStorage.getItem("users")) || [];
-        let btn = document.getElementById("btn");
-        let email = document.getElementById("email");
-        let password = document.getElementById("password");
-        btn.addEventListener("click", function (e) {
-            e.preventDefault();
-            if (email.value == "" || password.value == "") {
-                alert("Vui lòng nhập đầy đủ thông tin");
-            }
-            else {
-                let user = {
-                    email: email.value,
-                    password: password.value
-
-                }
-                function checkEmail(email, password) {
-                    for (let i = 0; i < users.length; i++) {
-                        if (users[i].email == email && users[i].password == password) {
-                            // alert("Đăng nhập thành công");
-                            return true;
-                            
-                        }
-                        
-                    }
-                    alert("Email hoặc mật khẩu không đúng");
-                    return false;
-                }
-                if (checkEmail(email.value, password.value)) {
-                    window.location.href = "../../index.html"; 
-                }
-            }
-        })
+    <script src="../../assets/js/auth_login.js">
+        
+        
     </script>
 
 

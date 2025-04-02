@@ -1,11 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Admin Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="../../assets/css/admin_web.css">
 </head>
+
 <body>
-    
+    <div class="sidebar">
+        <h2>Admin Dashboard</h2>
+        <a href="#">Quản lý lịch</a>
+        <a href="#">Quản lý dịch vụ</a>
+        <a href="../../index.html">Trang chủ</a>
+        <a href="#" style="color: red;">Đăng xuất</a>
+    </div>
+    <div class="dashboard">
+        <h2>Thống kê lịch tập</h2>
+        <div class="stats">
+            <div class="stat-box">Tổng số lịch Gym<br>
+                <strong style="color:blue" class="gym">1</strong></div>
+            <div class="stat-box">Tổng số lịch Yoga<br>
+                <strong style="color:green" class="yoga">3</strong></div>
+            <div class="stat-box">Tổng số lịch Zumba<br>
+                <strong style="color:purple" class="zumba">7</strong></div>
+        </div>
+        <div class="chart-container">
+            <canvas id="bookingChart"></canvas>
+        </div>
+    </div>
+
+    <script src="../../assets/js/admin.js"></script>
 </body>
+
 </html>
