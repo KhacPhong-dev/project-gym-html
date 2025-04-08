@@ -3,9 +3,11 @@ let admin = {
   email: "admin@gmail.com",
   password: "123456",
   role: "admin",
+  status: false,
 };
 
 let users = JSON.parse(localStorage.getItem("users")) || [];
+console.log(users);
 
 let checkAdmin = false;
 for (let i = 0; i < users.length; i++) {
@@ -35,7 +37,6 @@ btn.addEventListener("click", function (e) {
         alert("Đăng nhập thành công");
         return true;
       }
-      alert("Email hoặc mật khẩu không đúng");
       return false;
     }
     function checkEmail(email, password) {
@@ -50,11 +51,24 @@ btn.addEventListener("click", function (e) {
     }
     function runWeb() {
       if (checkAdmin(email.value, password.value)) {
-        window.location.href = "../admin/dashboard.html";
+        users[0].status = true;
+        localStorage.setItem("users", JSON.stringify(users));
+        window.location.href = "/pages/admin/dashboard.html";
+        
+
         return;
       }
       if (checkEmail(email.value, password.value)) {
-        window.location.href = "../../index.html";
+        for (let i = 0; i < users.length; i++) {
+          if (users[i].email == email.value) {
+            users[i].status = true;
+            localStorage.setItem("users", JSON.stringify(users));
+            break;
+          } 
+
+        }
+        window.location.href = "/index.html";
+        
         return;
       }
     }

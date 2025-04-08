@@ -25,7 +25,10 @@ form.addEventListener("submit", function (e) {
       email: email.value,
       password: password.value,
       role: "user",
+      status: true,
     };
+
+    // Lưu vào localStorage
     function checkEmail(email) {
       for (let i = 0; i < users.length; i++) {
         if (users[i].email == email) {
@@ -35,10 +38,11 @@ form.addEventListener("submit", function (e) {
       return true;
     }
     if (checkEmail(email.value)) {
+      console.log(user);
       users.push(user);
       localStorage.setItem("users", JSON.stringify(users));
       alert("Đăng ký thành công");
-      window.location.href = "../../index.html";
+      window.location.href = "/index.html";
     } else {
       alert("Email đã tồn tại");
     }

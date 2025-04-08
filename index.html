@@ -6,17 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gym Management</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <!-- <script src="/assets/js/main.js"></script> -->
 </head>
 
 <body class="bg-gray-100">
 
-    <nav class="navbar">
+    <nav  class="navbar">
         <h1 class="logo">GYM MANAGEMENT</h1>
         <ul class="menu">
-            <li><a href="./index.html">Trang chủ</a></li>
-            <li><a href="./pages/booking/schedule.html">Lịch tập</a></li>
-            <li><a href="./pages/auth/login.html">Đăng nhập</a></li>
+            <li><a href="/index.html">Trang chủ</a></li>
+            <!-- <li><a href="/pages/booking/schedule.html">Lịch tập</a></li> -->
+            <li id="register"><a href="./pages/auth/register.html">Đăng kí</a></li>
+            <li id="name"></li>
+            <li id="admin" class="hidden" ><a href="/pages/admin/dashboard.html">Quản lí</a></li>
+            <li id="logout" class="hidden" onclick="logout()"><a href="#">Đăng xuất</a></li>  
+            
+            <li id="login"><a href="/pages/auth/login.html">Đăng nhập</a></li>
             
         </ul>
     </nav>
@@ -25,7 +31,7 @@
         <div class="hero-content">
             <h2>Welcome to Our Gym</h2>
             <p>Transform Your Body, Transform Your Life</p>
-            <a href="#" class="cta-button">Bắt đầu ngay</a>
+            <a href="#" onclick="checkacc(event)" class="cta-button">Bắt đầu ngay</a>
         </div>
     </section>
 
@@ -33,22 +39,22 @@
         <h2>Các lớp học phổ biến</h2>
         <div class="class-cards">
             <div class="class-card">
-                <img src="./img/gym.png" alt="Gym">
+                <img src="/img/gym.png" alt="Gym">
                 <h3>Gym</h3>
                 <p>Tập luyện với các thiết bị hiện đại</p>
-                <a href="#" class="btn">Đặt lịch</a>
+                <a href="/pages/booking/schedule.html" class="btn">Đặt lịch</a>
             </div>
             <div class="class-card">
-                <img src="./img/yoga.png" alt="Yoga">
+                <img src="/img/yoga.png" alt="Yoga">
                 <h3>Yoga</h3>
                 <p>Thư giãn và cân bằng tâm trí</p>
-                <a href="#" class="btn">Đặt lịch</a>
+                <a href="/pages/booking/schedule.html" class="btn">Đặt lịch</a>
             </div>
             <div class="class-card">
-                <img src="./img/zumba.png" alt="Zumba">
+                <img src="/img/zumba.png" alt="Zumba">
                 <h3>Zumba</h3>
                 <p>Đốt cháy calories với những điệu nhảy sôi động</p>
-                <a href="#" class="btn">Đặt lịch</a>
+                <a href="/pages/booking/schedule.html" class="btn">Đặt lịch</a>
             </div>
         </div>
     </section>
@@ -74,7 +80,8 @@
             &copy; 2024 Gym Management. All rights reserved.
         </div>
     </footer> 
-    <script src="./assets/js/main.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <!-- <script src="/assets/js/main.js"></script> -->
 </body>
 
 </html>
