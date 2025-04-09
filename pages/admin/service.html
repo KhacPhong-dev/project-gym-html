@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/assets/css/service.css" />
+</head>
+
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Admin Dashboard</h2>
+            <nav>
+                <a href="/pages/admin/dashboard.html">Quản lý lịch</a>
+                <a href="#" class="active">Quản lý dịch vụ</a>
+                <a href="/index.html">Trang chủ</a>
+            </nav>
+            <a href="#" class="logout">Đăng xuất</a>
+        </aside>
+
+        <main class="main-content">
+            <div class="header">
+                <h1>Quản lý Dịch vụ</h1>
+                <button onclick="themDichVu()">Thêm dịch vụ mới</button>
+                <!-- Modal Thêm Dịch Vụ -->
+                <div class="modal" id="modalThemDichVu">
+                    <div class="modal-content">
+                        <h2>Thêm dịch vụ mới</h2>
+                        <label for="tenDichVu">Tên dịch vụ</label>
+                        <input type="text" id="tenDichVu" />
+                
+                        <label for="moTaDichVu">Mô tả</label>
+                        <textarea id="moTaDichVu" rows="4"></textarea>
+                
+                        <label for="hinhAnhDichVu">Đường dẫn ảnh (VD: /img/gym.jpg)</label>
+                        <input type="text" id="hinhAnhDichVu" />
+                
+                        <div class="modal-actions">
+                            <button class="cancel-btn" onclick="dongModal()">Hủy</button>
+                            <button class="save-btn" onclick="luuDichVu()">Lưu</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tên dịch vụ</th>
+                        <th>Mô tả</th>
+                        <th>Hình ảnh</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody id="serviceTableBody">
+                    <!-- Dịch vụ sẽ được thêm bằng JavaScript -->
+                </tbody>
+            </table>
+        </main>
+    </div>
+
+    <script src="/assets/js/service.js"></script>
+</body>
+
+</html>

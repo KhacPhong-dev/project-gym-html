@@ -3,6 +3,12 @@ let editIndex = null;
 let currentPage = 1;
 const itemsPerPage = 5; // Số lượng mục hiển thị mỗi trang
 let users =JSON.parse(localStorage.getItem("users")) || [];
+let index = 0;
+for(let i = 0;users.length > i; i++){
+  if(users[i].status==true){
+    index = i;
+  }
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   // Chỉ cho phép đặt lịch từ ngày hôm sau trở đi
@@ -23,15 +29,17 @@ function openModal(index = null) {
     document.getElementById("class").value = schedule.class;
     document.getElementById("date").value = schedule.date;
     document.getElementById("time").value = schedule.time;
-    document.getElementById("name").value = schedule.name;
+    // document.getElementById("name").value = schedule.name;
     document.getElementById("email").value = schedule.email;
+    
   } else {
     // Nếu thêm mới, làm trống các input
     document.getElementById("class").value = "";
     document.getElementById("date").value = "";
     document.getElementById("time").value = "";
-    document.getElementById("name").value = "";
+    // document.getElementById("name").value = "";
     document.getElementById("email").value = "";
+    
   }
 }
 
@@ -41,7 +49,7 @@ function closeModal() {
   document.getElementById("class").value = "";
   document.getElementById("date").value = "";
   document.getElementById("time").value = "";
-  document.getElementById("name").value = "";
+  // document.getElementById("name").value = "";
   document.getElementById("email").value = "";
 }
 
@@ -50,8 +58,8 @@ function saveSchedule() {
     class: document.getElementById("class").value,
     date: document.getElementById("date").value,
     time: document.getElementById("time").value,
-    name: document.getElementById("name").value,
-    email: document.getElementById("email").value,
+    name: users[index].name,
+    email: users[index].email,
   };
 
   if (
@@ -80,6 +88,11 @@ function saveSchedule() {
     });
   } else {
     schedules[editIndex] = schedule;
+    Swal.fire({
+      title: "Okay!MF",
+      icon: "success",
+      draggable: true,
+    });
   }
 
   localStorage.setItem("schedules", JSON.stringify(schedules));
@@ -92,58 +105,74 @@ function searchSchedule() {
   currentPage = 1; // Reset về trang đầu khi có tìm kiếm mới
   renderSchedules();
 }
-
 function renderSchedules() {
   let list = document.getElementById("schedule-list");
   list.innerHTML = "";
 
-  // Lấy từ khóa tìm kiếm và lọc các lịch có tên hoặc email chứa từ khóa đó
-  let searchTerm = document.getElementById("search").value.toLowerCase();
-  let filteredSchedules = schedules.filter(
-    (schedule) =>
-      schedule.name.toLowerCase().includes(searchTerm) ||
-      schedule.email.toLowerCase().includes(searchTerm)
-  );
+  let currentUser = users[index];
+  let filteredSchedules;
 
-  // Tính toán bắt đầu và kết thúc của trang hiện tại trên mảng đã lọc
+  if (currentUser.role === "admin") {
+    filteredSchedules = schedules;
+  } else {
+    filteredSchedules = schedules.filter(
+      (schedule) => schedule.email === currentUser.email
+    );
+  }
+
+  // ===> Lọc theo lớp học <===
+  const selectedClass = document.getElementById("classFilter").value;
+  if (selectedClass !== "Tất cả") {
+    filteredSchedules = filteredSchedules.filter(
+      (schedule) => schedule.class === selectedClass
+    );
+  }
+  // ===> Lọc theo ngày <===
+    const searchTerm = document.getElementById("search").value.toLowerCase();
+    const dateFilter = document.getElementById("dateFilter").value;
+
+    let resultSchedules = filteredSchedules.filter((schedule) => {
+      const matchesNameOrEmail =
+        schedule.name.toLowerCase().includes(searchTerm) ||
+        schedule.email.toLowerCase().includes(searchTerm);
+
+      const matchesDate = !dateFilter || schedule.date === dateFilter;
+
+      return matchesNameOrEmail && matchesDate;
+    });
+
+
+
+  // Phân trang như trước
   let start = (currentPage - 1) * itemsPerPage;
   let end = currentPage * itemsPerPage;
-  let schedulesToShow = filteredSchedules.slice(start, end);
+  let schedulesToShow = resultSchedules.slice(start, end);
 
-  // Hiển thị lịch trình cho trang hiện tại
-  schedulesToShow.forEach((schedule, index) => {
-    for(let i = 0;users.length > i; i++){
-      if(users[i].role=="admin"&&users[i].status==true){
-        let row = `<tr>
-          <td>${schedule.class}</td>
-          <td>${schedule.date}</td>
-          <td>${schedule.time}</td>
-          <td>${schedule.name}</td>
-          <td>${schedule.email}</td>
-          <td>
-            <button class='btn btn-warning btn-sm' onclick='openModal(${
-              start + index
-            })'>Sửa</button>
-            <button class='btn btn-danger btn-sm' onclick='deleteSchedule(${
-              start + index
-            })'>Xóa</button>
-          </td>
-        </tr>`;
-        list.innerHTML += row;
-      }else if(users[i].role&&users[i].status==true){
-        let row = `<tr>
-          <td>${schedule.class}</td>
-          <td>${schedule.date}</td>
-          <td>${schedule.time}</td>
-          <td>${schedule.name}</td>
-          <td>${schedule.email}</td>
-        </tr>`;
-        list.innerHTML += row;
-      }
+  schedulesToShow.forEach((schedule, i) => {
+    let row = `<tr>
+      <td>${schedule.class}</td>
+      <td>${schedule.date}</td>
+      <td>${schedule.time}</td>
+      <td>${schedule.name}</td>
+      <td>${schedule.email}</td>`;
+
+    if (currentUser.role === "admin") {
+      row += `
+        <td>
+          <button class='btn btn-warning btn-sm' onclick='openModal(${
+            start + i
+          })'>Sửa</button>
+          <button class='btn btn-danger btn-sm' onclick='deleteSchedule(${
+            start + i
+          })'>Xóa</button>
+        </td>`;
     }
+
+    row += `</tr>`;
+    list.innerHTML += row;
   });
 
-  renderPagination(filteredSchedules.length);
+  renderPagination(resultSchedules.length);
 }
 
 // Hàm cập nhật phân trang với nút số trang

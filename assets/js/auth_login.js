@@ -26,7 +26,11 @@ let password = document.getElementById("password");
 btn.addEventListener("click", function (e) {
   e.preventDefault();
   if (email.value == "" || password.value == "") {
-    alert("Vui lòng nhập đầy đủ thông tin");
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Nhập đầy đủ thông tin",
+    });
   } else {
     let user = {
       email: email.value,
@@ -34,7 +38,7 @@ btn.addEventListener("click", function (e) {
     };
     function checkAdmin(email, password) {
       if (email == admin.email && password == admin.password) {
-        alert("Đăng nhập thành công");
+        
         return true;
       }
       return false;
@@ -46,15 +50,26 @@ btn.addEventListener("click", function (e) {
           return true;
         }
       }
-      alert("Email hoặc mật khẩu không đúng");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Email hoặc mật khẩu không đúng",
+      });
       return false;
     }
     function runWeb() {
       if (checkAdmin(email.value, password.value)) {
         users[0].status = true;
         localStorage.setItem("users", JSON.stringify(users));
-        window.location.href = "/pages/admin/dashboard.html";
-        
+        Swal.fire({
+          title: "Drag me!",
+          icon: "success",
+          draggable: true,
+        });
+        setTimeout(() => {
+          window.location.href = "/pages/admin/dashboard.html";
+        }, 2000);
+        // window.location.href = "/pages/admin/dashboard.html";
 
         return;
       }
@@ -64,11 +79,18 @@ btn.addEventListener("click", function (e) {
             users[i].status = true;
             localStorage.setItem("users", JSON.stringify(users));
             break;
-          } 
-
+          }
         }
-        window.location.href = "/index.html";
-        
+        Swal.fire({
+          title: "Drag me!",
+          icon: "success",
+          draggable: true,
+        });
+        setTimeout(() => {
+          window.location.href = "/index.html";
+        }, 2000);
+        // window.location.href = "/index.html";
+
         return;
       }
     }

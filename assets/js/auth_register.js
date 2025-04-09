@@ -12,13 +12,31 @@ form.addEventListener("submit", function (e) {
     confirmPassword.value == "" ||
     name.value == ""
   ) {
-    alert("Vui lòng nhập đầy đủ thông tin");
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Nhập đầy đủ thông tin",
+    });
   } else if (password.value.length < 8) {
-    alert("password phải có ít nhất 8 ký tự");
+
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "password phải có ít nhất 8 ký tự",
+    });
   } else if (email.value.indexOf("@") == -1 && email.value.indexOf(".") == -1) {
-    alert("email không hợp lệ");
+    alert("");
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "email không hợp lệ",
+    });
   } else if (password.value != confirmPassword.value) {
-    alert("Mật khẩu không khớp");
+      Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Mật khẩu không khớp",
+    });
   } else {
     let user = {
       name: name.value,
@@ -41,10 +59,18 @@ form.addEventListener("submit", function (e) {
       console.log(user);
       users.push(user);
       localStorage.setItem("users", JSON.stringify(users));
-      alert("Đăng ký thành công");
+      Swal.fire({
+        title: "Drag me!",
+        icon: "Đăng ký thành công",
+        draggable: true,
+      });
       window.location.href = "/index.html";
     } else {
-      alert("Email đã tồn tại");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Email đã tồn tại",
+      });
     }
   }
 });

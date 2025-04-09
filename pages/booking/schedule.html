@@ -60,8 +60,23 @@
     <div class="container mt-4">
         <h2 class="text-center">Quản lý lịch tập</h2>
         <button class="btn btn-primary mb-3" onclick="openModal()">Đặt lịch mới</button>
-        <input type="text" id="search" class="form-control mb-3" placeholder="Tìm kiếm theo tên hoặc email"
-            onkeyup="searchSchedule()">
+        <div class="row g-2 mb-3 align-items-center">
+            <div class="col-md-4">
+                <input type="text" id="search" class="form-control" placeholder="Tìm theo tên hoặc email"
+                    onkeyup="searchSchedule()">
+            </div>
+            <div class="col-md-4">
+                <select id="classFilter" onchange="searchSchedule()" class="form-select">
+                    <option value="Tất cả">Tất cả lớp học</option>
+                    <option value="Yoga">Yoga</option>
+                    <option value="Gym">Gym</option>
+                    <option value="Zumba">Zumba</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <input type="date" id="dateFilter" class="form-control" onchange="searchSchedule()">
+            </div>
+        </div>
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -113,7 +128,7 @@
                         </select>
                     </div>
     
-                    <div class="mb-2">
+                    <!-- <div class="mb-2">
                         <label for="name" class="form-label">Họ tên:</label>
                         <input type="text" id="name" class="form-control" placeholder="Họ tên">
                     </div>
@@ -121,7 +136,7 @@
                     <div class="mb-2">
                         <label for="email" class="form-label">Email:</label>
                         <input type="email" id="email" class="form-control" placeholder="Email">
-                    </div>
+                    </div> -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" onclick="closeModal()">Hủy</button>

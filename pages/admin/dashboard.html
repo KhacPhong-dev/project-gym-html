@@ -12,10 +12,10 @@
 <body>
     <div class="sidebar">
         <h2>Admin Dashboard</h2>
-        <a href="#">Quản lý lịch</a>
-        <a href="#">Quản lý dịch vụ</a>
-        <a href="/index.html">Trang chủ</a>
-        <a href="#" style="color: red;">Đăng xuất</a>
+        <li><a href="/pages/booking/schedule.html">Quản lý lịch</a></li>
+        <li><a href="/pages/admin/service.html">Quản lý dịch vụ</a></li>
+        <li><a href="/index.html">Trang chủ</a></li>
+        <li id="logout" class="hidden"  onclick="logout()"><a style="color: red;" href="#">Đăng xuất</a></li>
     </div>
     <div class="dashboard">
         <h2>Thống kê lịch tập</h2>
@@ -31,8 +31,10 @@
             <canvas id="bookingChart"></canvas>
         </div>
     </div>
+    
 
     <script src="/assets/js/admin.js"></script>
+    <script src="/assets/js/main.js"></script>
 </body>
 
 </html>
