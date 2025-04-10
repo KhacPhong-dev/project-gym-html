@@ -5,6 +5,11 @@ let zumba=0;
 const ctx = document.getElementById("bookingChart").getContext("2d");
 let schedule = JSON.parse(localStorage.getItem("schedules")) || [];
 let users = JSON.parse(localStorage.getItem("users")) || [];
+for(let i =0;users.length > i; i++){
+  if(users[i].status==true &&users[i].role=="user"){
+    window.location.href = "/index.html";}
+}
+
 console.log(schedule);
 
 for(let i =0;schedule.length >i;i++){
@@ -58,8 +63,14 @@ logout.addEventListener("click", function () {
     if (users[i].status == true) {
       users[i].status = false;
       localStorage.setItem("users", JSON.stringify(users));
-      alert("Đăng xuất thành công");
-      window.location.href = "/index.html";
+      Swal.fire({
+        title: "Drag me!",
+        icon: "success",
+        draggable: true,
+      });
+      setTimeout(function () {
+        window.location.href = "/index.html";
+      }, 2000);
     }
   }
 });

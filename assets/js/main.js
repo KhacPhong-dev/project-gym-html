@@ -27,8 +27,15 @@ logout.addEventListener("click", function () {
     if (users[i].status == true) {
       users[i].status = false;
       localStorage.setItem("users", JSON.stringify(users));
-      alert("Đăng xuất thành công");
-      window.location.href = "/index.html";
+      Swal.fire({
+        title: "Drag me!",
+        icon: "success",
+        draggable: true,
+      });
+      setTimeout(function () {
+        window.location.href = "/index.html";
+      }, 2000);
+
     }
   }
 });

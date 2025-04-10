@@ -3,24 +3,25 @@ function clearModalFields() {
   document.getElementById("moTaDichVu").value = "";
   document.getElementById("hinhAnhDichVu").value = "";
 }
+let dichVuList = JSON.parse(localStorage.getItem("dichVuList")) || [];
 
-const dichVuList = [
-  {
-    ten: "Gym",
-    moTa: "Tập luyện với các thiết bị hiện đại",
-    hinhAnh: "/img/gym.png",
-  },
-  {
-    ten: "Yoga",
-    moTa: "Thư giãn và cân bằng tâm trí",
-    hinhAnh: "/img/yoga.png",
-  },
-  {
-    ten: "Zumba",
-    moTa: "Đốt cháy calories với những điệu nhảy sôi động",
-    hinhAnh: "/img/zumba.png",
-  },
-];
+// const dichVuList = [
+//   {
+//     ten: "Gym",
+//     moTa: "Tập luyện với các thiết bị hiện đại",
+//     hinhAnh: "/img/gym.png",
+//   },
+//   {
+//     ten: "Yoga",
+//     moTa: "Thư giãn và cân bằng tâm trí",
+//     hinhAnh: "/img/yoga.png",
+//   },
+//   {
+//     ten: "Zumba",
+//     moTa: "Đốt cháy calories với những điệu nhảy sôi động",
+//     hinhAnh: "/img/zumba.png",
+//   },
+// ];
 
 function renderDichVu() {
   const tbody = document.getElementById("serviceTableBody");
@@ -66,8 +67,10 @@ function luuDichVu() {
     dichVuList.push({ ten, moTa, hinhAnh });
     renderDichVu();
     dongModal();
+    localStorage.setItem("dichVuList", JSON.stringify(dichVuList));
   } else {
     alert("Vui lòng nhập đầy đủ thông tin.");
+    
   }
 }
 
@@ -80,6 +83,7 @@ function suaDichVu(index) {
   if (ten && moTa && hinhAnh) {
     dichVuList[index] = { ten, moTa, hinhAnh };
     renderDichVu();
+    localStorage.setItem("dichVuList", JSON.stringify(dichVuList));
   }
 }
 
@@ -87,7 +91,11 @@ function xoaDichVu(index) {
   if (confirm("Bạn có chắc muốn xóa dịch vụ này?")) {
     dichVuList.splice(index, 1);
     renderDichVu();
+    localStorage.setItem("dichVuList", JSON.stringify(dichVuList));
   }
 }
 
 document.addEventListener("DOMContentLoaded", renderDichVu);
+
+
+
