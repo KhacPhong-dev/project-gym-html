@@ -67,7 +67,7 @@ btn.addEventListener("click", function (e) {
           draggable: true,
         });
         setTimeout(() => {
-          window.location.href = "../../pages/admin/dashboard.html";
+          window.location.href = "/pages/admin/dashboard.html";
         }, 2000);
         // window.location.href = "/pages/admin/dashboard.html";
 
@@ -87,7 +87,7 @@ btn.addEventListener("click", function (e) {
           draggable: true,
         });
         setTimeout(() => {
-          window.location.href = "../../index.html";
+          window.location.href = "/index.html";
         }, 2000);
         // window.location.href = "/index.html";
 

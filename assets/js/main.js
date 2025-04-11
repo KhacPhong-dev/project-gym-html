@@ -33,7 +33,7 @@ logout.addEventListener("click", function () {
         draggable: true,
       });
       setTimeout(function () {
-        window.location.href = "../../index.html";
+        window.location.href = "/index.html";
       }, 2000);
 
     }
@@ -51,9 +51,9 @@ function checklogin () {
 function checkacc(e){
     e.preventDefault();
     if (checklogin()) {
-      window.location.href = "../../pages/booking/schedule.html";
+      window.location.href = "/pages/booking/schedule.html";
     } else {
-      window.location.href = "../../pages/auth/login.html";
+      window.location.href = "/pages/auth/login.html";
     }
 
 }
