@@ -9,9 +9,8 @@ for(let i = 0;users.length > i; i++){
     index = i;
   }
 }
-
+// đặt lịch cho người dùng
 document.addEventListener("DOMContentLoaded", () => {
-  // Chỉ cho phép đặt lịch từ ngày hôm sau trở đi
   let today = new Date();
   today.setDate(today.getDate() + 1);
   let tomorrow = today.toISOString().split("T")[0];
@@ -30,7 +29,7 @@ function openModal(index = null) {
     document.getElementById("date").value = schedule.date;
     document.getElementById("time").value = schedule.time;
     // document.getElementById("name").value = schedule.name;
-    document.getElementById("email").value = schedule.email;
+    // document.getElementById("email").value = schedule.email;
     
   } else {
     // Nếu thêm mới, làm trống các input
@@ -38,7 +37,7 @@ function openModal(index = null) {
     document.getElementById("date").value = "";
     document.getElementById("time").value = "";
     // document.getElementById("name").value = "";
-    document.getElementById("email").value = "";
+    // document.getElementById("email").value = "";
     
   }
 }
@@ -50,7 +49,7 @@ function closeModal() {
   document.getElementById("date").value = "";
   document.getElementById("time").value = "";
   // document.getElementById("name").value = "";
-  document.getElementById("email").value = "";
+  // document.getElementById("email").value = "";
 }
 
 function saveSchedule() {

@@ -64,7 +64,7 @@ form.addEventListener("submit", function (e) {
         icon: "Đăng ký thành công",
         draggable: true,
       });
-      window.location.href = "/index.html";
+      window.location.href = "../../index.html";
     } else {
       Swal.fire({
         icon: "error",

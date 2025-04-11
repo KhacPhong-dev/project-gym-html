@@ -7,7 +7,7 @@ let schedule = JSON.parse(localStorage.getItem("schedules")) || [];
 let users = JSON.parse(localStorage.getItem("users")) || [];
 for(let i =0;users.length > i; i++){
   if(users[i].status==true &&users[i].role=="user"){
-    window.location.href = "/index.html";}
+    window.location.href = "../../index.html";}
 }
 
 console.log(schedule);
@@ -69,7 +69,7 @@ logout.addEventListener("click", function () {
         draggable: true,
       });
       setTimeout(function () {
-        window.location.href = "/index.html";
+        window.location.href = "../../index.html";
       }, 2000);
     }
   }
