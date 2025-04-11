@@ -73,12 +73,17 @@ function luuDichVu() {
     
   }
 }
+let indexDangSua = null;
 
 function suaDichVu(index) {
+
   const dv = dichVuList[index];
-  const ten = prompt("Sửa tên dịch vụ:", dv.ten);
-  const moTa = prompt("Sửa mô tả:", dv.moTa);
-  const hinhAnh = prompt("Sửa URL hình ảnh (hoặc dán base64):", dv.hinhAnh);
+  document.getElementById("tenDichVuEdit").value = dv.ten;
+  document.getElementById("moTaDichVuEdit").value = dv.moTa;
+  document.getElementById("hinhAnhDichVuEdit").value = dv.hinhAnh;
+
+  indexDangSua = index;
+  document.getElementById("modalSuaDichVu").style.display = "flex";
 
   if (ten && moTa && hinhAnh) {
     dichVuList[index] = { ten, moTa, hinhAnh };
@@ -86,6 +91,28 @@ function suaDichVu(index) {
     localStorage.setItem("dichVuList", JSON.stringify(dichVuList));
   }
 }
+function dongModal() {
+  document.getElementById("modalThemDichVu").style.display = "none";
+  document.getElementById("modalSuaDichVu").style.display = "none";
+  clearModalFields();
+}
+
+function capNhatDichVu() {
+  const ten = document.getElementById("tenDichVuEdit").value.trim();
+  const moTa = document.getElementById("moTaDichVuEdit").value.trim();
+  const hinhAnh = document.getElementById("hinhAnhDichVuEdit").value.trim();
+
+  if (ten && moTa && hinhAnh && indexDangSua !== null) {
+    dichVuList[indexDangSua] = { ten, moTa, hinhAnh };
+    localStorage.setItem("dichVuList", JSON.stringify(dichVuList));
+    renderDichVu();
+    dongModal();
+    indexDangSua = null;
+  } else {
+    alert("Vui lòng nhập đầy đủ thông tin.");
+  }
+}
+
 
 function xoaDichVu(index) {
   if (confirm("Bạn có chắc muốn xóa dịch vụ này?")) {
@@ -94,6 +121,8 @@ function xoaDichVu(index) {
     localStorage.setItem("dichVuList", JSON.stringify(dichVuList));
   }
 }
+
+
 
 document.addEventListener("DOMContentLoaded", renderDichVu);
 

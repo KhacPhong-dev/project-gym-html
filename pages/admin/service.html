@@ -43,7 +43,24 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="modal" id="modalSuaDichVu">
+                    <div class="modal-content">
+                        <h2>Sửa dịch vụ</h2>
+                        <label for="tenDichVuEdit">Tên dịch vụ</label>
+                        <input type="text" id="tenDichVuEdit" />
+                
+                        <label for="moTaDichVuEdit">Mô tả</label>
+                        <textarea id="moTaDichVuEdit" rows="4"></textarea>
+                
+                        <label for="hinhAnhDichVuEdit">Đường dẫn ảnh</label>
+                        <input type="text" id="hinhAnhDichVuEdit" />
+                
+                        <div class="modal-actions">
+                            <button class="cancel-btn" onclick="dongModal()">Hủy</button>
+                            <button class="save-btn" onclick="capNhatDichVu()">Cập nhật</button>
+                        </div>
+                    </div>
+                </div>
             </div>
             <table>
                 <thead>
@@ -59,6 +76,7 @@
                 </tbody>
             </table>
         </main>
+        
     </div>
 
     <script src="/assets/js/service.js"></script>
