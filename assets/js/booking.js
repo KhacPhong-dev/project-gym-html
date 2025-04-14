@@ -26,7 +26,8 @@ function openModal(index = null) {
     // Lấy dữ liệu lịch trình đang chỉnh sửa
     let schedule = schedules[index];
     document.getElementById("class").value = schedule.class;
-    document.getElementById("date").value = schedule.date;
+    document.getElementById("date").value = schedule.
+
     document.getElementById("time").value = schedule.time;
     // document.getElementById("name").value = schedule.name;
     // document.getElementById("email").value = schedule.email;
@@ -68,15 +69,26 @@ function saveSchedule() {
     !schedule.name ||
     !schedule.email
   ) {
-    alert("Vui lòng nhập đầy đủ thông tin!");
-    return;
-  } else if (
-    schedule.email.indexOf("@") == -1 ||
-    schedule.email.indexOf(".") == -1
-  ) {
-    alert("Email không hợp lệ");
+    // alert("Vui lòng nhập đầy đủ thông tin!");
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Vui lòng nhập đầy đủ thông tin!",
+    });
     return;
   }
+  //  else if (
+  //   schedule.email.indexOf("@") == -1 ||
+  //   schedule.email.indexOf(".") == -1
+  // ) {
+  //   // alert("Email không hợp lệ");
+  //   Swal.fire({
+  //     icon: "error",
+  //     title: "Oops...",
+  //     text: "Email không hợp lệ",
+  //   });
+  //   return;
+  // }
 
   if (editIndex === null) {
     schedules.push(schedule);
@@ -127,29 +139,33 @@ function renderSchedules() {
     );
   }
   // ===> Lọc theo ngày <===
-    const searchTerm = document.getElementById("search").value.toLowerCase();
-    const dateFilter = document.getElementById("dateFilter").value;
+  const searchTerm = document.getElementById("search").value.toLowerCase();
+  const dateFilter = document.getElementById("dateFilter").value;
 
-    let resultSchedules = filteredSchedules.filter((schedule) => {
-      const matchesNameOrEmail =
-        schedule.name.toLowerCase().includes(searchTerm) ||
-        schedule.email.toLowerCase().includes(searchTerm);
+  let resultSchedules = filteredSchedules.filter((schedule) => {
+    const matchesNameOrEmail =
+      schedule.name.toLowerCase().includes(searchTerm) ||
+      schedule.email.toLowerCase().includes(searchTerm);
 
-      const matchesDate = !dateFilter || schedule.date === dateFilter;
+    const matchesDate = !dateFilter || schedule.date === dateFilter;
 
-      return matchesNameOrEmail && matchesDate;
-    });
-
-
+    return matchesNameOrEmail && matchesDate;
+  });
 
   // Phân trang như trước
   let start = (currentPage - 1) * itemsPerPage;
   let end = currentPage * itemsPerPage;
+  // Sắp xếp lịch theo ngày tăng dần
+  // resultSchedules.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+  // Phân trang
   let schedulesToShow = resultSchedules.slice(start, end);
 
   schedulesToShow.forEach((schedule, i) => {
+    // <td>${formatDate(schedule.date)}</td>
     let row = `<tr>
       <td>${schedule.class}</td>
+      
       <td>${schedule.date}</td>
       <td>${schedule.time}</td>
       <td>${schedule.name}</td>
@@ -249,3 +265,11 @@ function deleteSchedule(index) {
   // localStorage.setItem("schedules", JSON.stringify(schedules));
   // renderSchedules();
 }
+// function formatDate(dateString) {
+//   const date = new Date(dateString);
+//   const day = date.getDate().toString().padStart(2, "0");
+//   const month = (date.getMonth() + 1).toString().padStart(2, "0");
+//   const year = date.getFullYear()
+//   return `${day}/${month}/${year}`;
+// }
+
